@@ -10,6 +10,9 @@ import java.util.Optional;
 
 @RepositoryRestResource
 public interface BookRepository extends MongoRepository<Book, ObjectId> {
-    Optional<Book> findById(@Param("id") ObjectId id);
-    Collection<Book> findByName(@Param("name") String name);
+    List<Book> findByName(@Param("name") String name);
+
+    @Override
+    @RestResource(exported = false)
+    void deleteById(ObjectId id);
 }
